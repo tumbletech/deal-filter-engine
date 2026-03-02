@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Developer Inquiry Filter | Pre-Sales Qualification</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body>
+  <main class="container">
+    <header class="header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Developer Inquiry Filter</h1>
+          <p class="subtitle">Provide complete details for executive evaluation. Incomplete submissions may be declined.</p>
+        </div>
+      </div>
+
+      <div class="meta">
+        <span class="pill">Real Estate Developers</span>
+        <span class="pill pill-muted">Pre-Sales Qualification</span>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="stepper" aria-label="Progress">
+        <div class="stepper-track">
+          <div id="progressBar" class="stepper-bar"></div>
+        </div>
+        <div class="stepper-labels">
+          <span class="step-label is-active" data-step-label="1">1</span>
+          <span class="step-label" data-step-label="2">2</span>
+          <span class="step-label" data-step-label="3">3</span>
+          <span class="step-label" data-step-label="4">4</span>
+          <span class="step-label" data-step-label="5">5</span>
+          <span class="step-label" data-step-label="6">6</span>
+        </div>
+        <div class="stepper-titles">
+          <div class="step-title is-active" data-step-title="1">Contact</div>
+          <div class="step-title" data-step-title="2">Proposal</div>
+          <div class="step-title" data-step-title="3">Financials</div>
+          <div class="step-title" data-step-title="4">Timeline</div>
+          <div class="step-title" data-step-title="5">Summary</div>
+          <div class="step-title" data-step-title="6">Review</div>
+        </div>
+      </div>
+
+      <form id="presalesForm" novalidate>
+        <!-- STEP 1 -->
+        <div class="step is-active" data-step="1">
+          <h2>Contact & Authority</h2>
+          <p class="hint">We prioritize submissions from decision-makers or authorized representatives.</p>
+
+          <div class="grid">
+            <div class="field">
+              <label for="fullName">Full Name <span class="req">*</span></label>
+              <input id="fullName" name="fullName" type="text" autocomplete="name" required />
+              <small class="error" data-error-for="fullName"></small>
+            </div>
+
+            <div class="field">
+              <label for="company">Company / Organization <span class="req">*</span></label>
+              <input id="company" name="company" type="text" autocomplete="organization" required />
+              <small class="error" data-error-for="company"></small>
+            </div>
+
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+              <small class="error" data-error-for="email"></small>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone / WhatsApp <span class="req">*</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+              <small class="error" data-error-for="phone"></small>
+            </div>
+
+            <div class="field">
+              <label for="role">Role <span class="req">*</span></label>
+              <select id="role" name="role" required>
+                <option value="">Select…</option>
+                <option>Owner / Principal</option>
+                <option>Investor</option>
+                <option>Landowner</option>
+                <option>Broker</option>
+                <option>Buyer</option>
+                <option>Consultant</option>
+                <option>Other</option>
+              </select>
+              <small class="error" data-error-for="role"></small>
+            </div>
+
+            <div class="field">
+              <label for="decisionMaker">Are you the final decision-maker? <span class="req">*</span></label>
+              <select id="decisionMaker" name="decisionMaker" required>
+                <option value="">Select…</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+              <small class="error" data-error-for="decisionMaker"></small>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step" data-step="2">
+          <h2>Proposal Type</h2>
+          <p class="hint">Choose the category that best fits your proposal. This controls required fields.</p>
+
+          <div class="grid">
+            <div class="field">
+              <label for="proposalType">What are you proposing? <span class="req">*</span></label>
+              <select id="proposalType" name="proposalType" required>
+                <option value="">Select…</option>
+                <option value="Land Sale">Land Sale</option>
+                <option value="Joint Venture">Joint Venture (JV)</option>
+                <option value="Bulk Purchase">Bulk Unit Purchase</option>
+                <option value="Investor Partnership">Investor Partnership</option>
+                <option value="Construction Proposal">Construction Proposal</option>
+              </select>
+              <small class="error" data-error-for="proposalType"></small>
+            </div>
+
+            <div class="field">
+              <label for="location">Property / Project Location <span class="req">*</span></label>
+              <input id="location" name="location" type="text" placeholder="City / Municipality, Province" required />
+              <small class="error" data-error-for="location"></small>
+            </div>
+          </div>
+
+          <div class="callout">
+            <strong>Note:</strong> If your proposal is incomplete (missing title status, size, price/budget, or timeline), it will be queued for clarification or declined.
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step" data-step="3">
+          <h2>Financials & Documentation</h2>
+          <p class="hint">Provide what you can. Missing critical documents may lower priority.</p>
+
+          <!-- LAND SALE -->
+          <div class="section conditional" data-show-for="Land Sale">
+            <h3>Land Sale Details</h3>
+
+            <div class="grid">
+              <div class="field">
+                <label for="landArea">Land Area <span class="req">*</span></label>
+                <input id="landArea" name="landArea" type="text" placeholder="e.g., 2.5 hectares / 25,000 sqm" />
+                <small class="error" data-error-for="landArea"></small>
+              </div>
+
+              <div class="field">
+                <label for="askingPrice">Asking Price <span class="req">*</span></label>
+                <input id="askingPrice" name="askingPrice" type="text" placeholder="e.g., ₱120,000,000" />
+                <small class="error" data-error-for="askingPrice"></small>
+              </div>
+
+              <div class="field">
+                <label for="titleStatus">Title Status <span class="req">*</span></label>
+                <select id="titleStatus" name="titleStatus">
+                  <option value="">Select…</option>
+                  <option value="Clean Title">Clean Title</option>
+                  <option value="Under Mother Title">Under Mother Title</option>
+                  <option value="In Process">In Process</option>
+                  <option value="Unclear / Not sure">Unclear / Not sure</option>
+                </select>
+                <small class="error" data-error-for="titleStatus"></small>
+              </div>
+
+              <div class="field">
+                <label for="zoning">Zoning Classification <span class="req">*</span></label>
+                <input id="zoning" name="zoning" type="text" placeholder="e.g., Residential / Agricultural / Mixed-use" />
+                <small class="error" data-error-for="zoning"></small>
+              </div>
+
+              <div class="field">
+                <label for="utilities">Utilities / Access</label>
+                <select id="utilities" name="utilities">
+                  <option value="">Select…</option>
+                  <option value="Road + Power + Water available">Road + Power + Water available</option>
+                  <option value="Partial utilities">Partial utilities</option>
+                  <option value="No utilities / unknown">No utilities / unknown</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="encumbrances">Encumbrances / Notes</label>
+                <input id="encumbrances" name="encumbrances" type="text" placeholder="e.g., tenants, liens, right-of-way, etc." />
+              </div>
+            </div>
+          </div>
+
+          <!-- JV -->
+          <div class="section conditional" data-show-for="Joint Venture">
+            <h3>Joint Venture (JV) Details</h3>
+
+            <div class="grid">
+              <div class="field">
+                <label for="jvLandEquity">Land Equity Value <span class="req">*</span></label>
+                <input id="jvLandEquity" name="jvLandEquity" type="text" placeholder="e.g., ₱80,000,000" />
+                <small class="error" data-error-for="jvLandEquity"></small>
+              </div>
+
+              <div class="field">
+                <label for="jvRevenueShare">Proposed Revenue Share % <span class="req">*</span></label>
+                <input id="jvRevenueShare" name="jvRevenueShare" type="text" placeholder="e.g., 40% landowner / 60% developer" />
+                <small class="error" data-error-for="jvRevenueShare"></small>
+              </div>
+
+              <div class="field">
+                <label for="jvFeasibility">Feasibility Study Available? <span class="req">*</span></label>
+                <select id="jvFeasibility" name="jvFeasibility">
+                  <option value="">Select…</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+                <small class="error" data-error-for="jvFeasibility"></small>
+              </div>
+
+              <div class="field">
+                <label for="jvTitleStatus">Title Status <span class="req">*</span></label>
+                <select id="jvTitleStatus" name="jvTitleStatus">
+                  <option value="">Select…</option>
+                  <option value="Clean Title">Clean Title</option>
+                  <option value="Under Mother Title">Under Mother Title</option>
+                  <option value="In Process">In Process</option>
+                  <option value="Unclear / Not sure">Unclear / Not sure</option>
+                </select>
+                <small class="error" data-error-for="jvTitleStatus"></small>
+              </div>
+            </div>
+          </div>
+
+          <!-- BULK -->
+          <div class="section conditional" data-show-for="Bulk Purchase">
+            <h3>Bulk Unit Purchase Details</h3>
+            <div class="grid">
+              <div class="field">
+                <label for="bulkBudget">Budget Range <span class="req">*</span></label>
+                <input id="bulkBudget" name="bulkBudget" type="text" placeholder="e.g., ₱10M–₱30M" />
+                <small class="error" data-error-for="bulkBudget"></small>
+              </div>
+
+              <div class="field">
+                <label for="bulkFinancing">Financing Ready? <span class="req">*</span></label>
+                <select id="bulkFinancing" name="bulkFinancing">
+                  <option value="">Select…</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+                <small class="error" data-error-for="bulkFinancing"></small>
+              </div>
+
+              <div class="field">
+                <label for="bulkUnits">Target Units / Quantity</label>
+                <input id="bulkUnits" name="bulkUnits" type="text" placeholder="e.g., 5 lots / 20 units" />
+              </div>
+            </div>
+          </div>
+
+          <!-- INVESTOR -->
+          <div class="section conditional" data-show-for="Investor Partnership">
+            <h3>Investor Partnership Details</h3>
+            <div class="grid">
+              <div class="field">
+                <label for="invCapital">Available Capital <span class="req">*</span></label>
+                <input id="invCapital" name="invCapital" type="text" placeholder="e.g., ₱50,000,000" />
+                <small class="error" data-error-for="invCapital"></small>
+              </div>
+
+              <div class="field">
+                <label for="invProof">Proof of Funds Available? <span class="req">*</span></label>
+                <select id="invProof" name="invProof">
+                  <option value="">Select…</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+                <small class="error" data-error-for="invProof"></small>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONSTRUCTION -->
+          <div class="section conditional" data-show-for="Construction Proposal">
+            <h3>Construction Proposal Details</h3>
+            <div class="grid">
+              <div class="field">
+                <label for="conCompanyType">Company Type <span class="req">*</span></label>
+                <input id="conCompanyType" name="conCompanyType" type="text" placeholder="e.g., GenCon / Design-Build / Specialist" />
+                <small class="error" data-error-for="conCompanyType"></small>
+              </div>
+
+              <div class="field">
+                <label for="conLicenses">Licenses / PCAB Category</label>
+                <input id="conLicenses" name="conLicenses" type="text" placeholder="e.g., PCAB AAA / Specialty / etc." />
+              </div>
+
+              <div class="field">
+                <label for="conPortfolio">Portfolio Link</label>
+                <input id="conPortfolio" name="conPortfolio" type="url" placeholder="https://..." />
+              </div>
+            </div>
+          </div>
+
+          <div class="callout">
+            <strong>Tip:</strong> If you have documents (title, tax dec, feasibility, maps), prepare them. Phase 2 can include file uploads.
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="step" data-step="4">
+          <h2>Timeline</h2>
+          <p class="hint">Choose the nearest realistic timeframe. Urgent + incomplete documents may be flagged.</p>
+
+          <div class="grid">
+            <div class="field">
+              <label for="timeline">Timeframe <span class="req">*</span></label>
+              <select id="timeline" name="timeline" required>
+                <option value="">Select…</option>
+                <option value="Immediate (0–30 days)">Immediate (0–30 days)</option>
+                <option value="1–3 months">1–3 months</option>
+                <option value="3–12 months">3–12 months</option>
+                <option value="Exploratory">Exploratory</option>
+              </select>
+              <small class="error" data-error-for="timeline"></small>
+            </div>
+
+            <div class="field">
+              <label for="availability">Availability for Call (optional)</label>
+              <input id="availability" name="availability" type="text" placeholder="e.g., Weekdays 2–5 PM" />
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="step" data-step="5">
+          <h2>Executive Summary</h2>
+          <p class="hint">Minimum 150 characters. Describe the proposal with specifics (numbers, documents, location, constraints).</p>
+
+          <div class="field">
+            <label for="description">Project / Proposal Description <span class="req">*</span></label>
+            <textarea id="description" name="description" rows="7" minlength="150" required
+              placeholder="Example: 2.5 hectares clean title, along main road, zoned residential, asking ₱120M. Utilities available. Open to due diligence and site inspection."></textarea>
+            <div class="counter">
+              <span id="descCount">0</span>/150 minimum
+            </div>
+            <small class="error" data-error-for="description"></small>
+          </div>
+
+          <div class="field">
+            <label for="notes">Additional Notes (optional)</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Anything else we should know?"></textarea>
+          </div>
+        </div>
+
+        <!-- STEP 6 -->
+        <div class="step" data-step="6">
+          <h2>Review & Submit</h2>
+          <p class="hint">Review your entries. Submissions are evaluated for completeness and deal viability.</p>
+
+          <div class="review" id="reviewBox"></div>
+
+          <div class="callout">
+            <strong>Consent:</strong> By submitting, you confirm the information is accurate to the best of your knowledge.
+          </div>
+
+          <div class="status" id="statusBox" role="status" aria-live="polite"></div>
+        </div>
+
+        <footer class="actions">
+          <button type="button" id="backBtn" class="btn btn-ghost">Back</button>
+          <button type="button" id="nextBtn" class="btn">Next</button>
+          <button type="submit" id="submitBtn" class="btn btn-primary is-hidden">Submit</button>
+        </footer>
+      </form>
+    </section>
+
+    <footer class="footnote">
+      <p>© <span id="year"></span> Tumbletech — Executive intake form (MVP)</p>
+    </footer>
+  </main>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
